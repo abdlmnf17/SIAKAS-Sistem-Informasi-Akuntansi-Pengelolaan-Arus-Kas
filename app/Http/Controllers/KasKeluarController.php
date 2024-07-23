@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\KasKeluar;
 use Illuminate\Cache\LuaScripts;
+use App\Models\Jurnal;
+use App\Models\Akun;
 
 class KasKeluarController extends Controller
 {
@@ -22,6 +24,7 @@ class KasKeluarController extends Controller
      */
     public function create()
     {
+        $akuns = Akun::all();
         $kaskeluar = KasKeluar::all();
         // Generate nomor transaksi
         $tanggal = now(); // atau Anda dapat mengatur tanggal sesuai kebutuhan
@@ -38,7 +41,7 @@ class KasKeluarController extends Controller
         } else {
             $no_kaskeluar .= '01';
         }
-        return \view('kaskeluar.create', \compact('kaskeluar', 'no_kaskeluar'));
+        return \view('kaskeluar.create', \compact('kaskeluar', 'no_kaskeluar', 'akuns'));
     }
 
     /**
@@ -59,6 +62,8 @@ class KasKeluarController extends Controller
             'no_bukti' => 'required|string|max:20|unique:kaskeluar',
             'no_kaskeluar' => 'required|string|max:20|unique:kaskeluar',
             'sumber' => 'required|string|max:25',
+            'debit' => 'required|string|max:25',
+            'kredit' => 'required|string|max:25',
         ], $messages, [
             'tgl' => 'Tanggal Transaksi',
             'keterangan' => 'Keterangan',
@@ -76,6 +81,41 @@ class KasKeluarController extends Controller
             'jumlah' => $request->jumlah,
             'sumber' => $request->sumber,
         ]);
+
+        $jurnal = Jurnal::create([
+            'no_jurnal' => $request->no_kaskeluar,
+            'keterangan' => $request->keterangan,
+            'debit' => $request->debit,
+            'kredit' => $request->kredit,
+            'total' => $request->jumlah,
+            'tgl' => $request->tgl,
+            'no_bukti' => $request->no_bukti,
+
+        ]);
+
+
+        if ($request->debit) {
+            $akun = Akun::where('nama_akun', $request->debit)->first();
+            if ($akun) {
+                $akun->total += $request->jumlah;
+                $akun->save();
+            }
+        }
+
+        if ($request->kredit) {
+            $akun = Akun::where('nama_akun', $request->kredit)->first();
+            if ($akun) {
+                if ($akun->nama_akun === 'Pendapatan') {
+                    // Jika nama akun adalah Pendapatan, tambahkan total
+                    $akun->total += $request->jumlah;
+                } else {
+                    // Jika nama akun bukan Pendapatan, kurangi total
+                    $akun->total -= $request->jumlah;
+                }
+                $akun->save();
+            }
+        }
+
 
         return \redirect()->route('kaskeluar.index')->with('success', 'Berhasil ditambahkan');
     }

@@ -11,14 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('akun', function (Blueprint $table) {
+        Schema::create('jurnal', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_akun')->unique();
-            $table->string('nama_akun');
-            $table->string('jenis_akun');
-            $table->integer('total');
+            $table->date('tgl');
+            $table->string('no_jurnal');
+            $table->string('no_bukti');
+            $table->string('keterangan');
+            $table->string('debit');
+            $table->string('kredit');
+            $table->decimal('total', 15, 2)->nullable();
             $table->timestamps();
         });
+
+
     }
 
     /**
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('akun');
+        Schema::dropIfExists('jurnal');
     }
 };

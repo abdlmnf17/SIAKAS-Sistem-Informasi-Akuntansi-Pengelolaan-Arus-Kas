@@ -66,6 +66,25 @@
                                     value="{{ old('jumlah') }}" required>
                             </div>
 
+                            <div class="form-group">
+                                <label for="debit">Akun Debit:</label>
+                                <select name="debit" class="form-control" id="debit" required>
+                                    <option value="">Pilih Akun</option>
+                                    @foreach ($akuns as $akun)
+                                        <option value="{{ $akun->nama_akun }}">{{ $akun->nama_akun }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="kredit">Akun Kredit:</label>
+                                <select name="kredit" class="form-control" id="kredit" required>
+                                    <option value="">Pilih Akun</option>
+                                    @foreach ($akuns as $akun)
+                                        <option value="{{ $akun->nama_akun }}">{{ $akun->nama_akun }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <button type="button" id="showConfirmModal" class="btn btn-primary">Simpan</button>
                         </form>
                     </div>

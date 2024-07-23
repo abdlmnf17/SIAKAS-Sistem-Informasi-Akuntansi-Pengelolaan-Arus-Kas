@@ -24,3 +24,5 @@ Route::resource('user', App\Http\Controllers\UserController::class);
 Route::resource('akun', App\Http\Controllers\AkunController::class);
 Route::resource('kasmasuk', \App\Http\Controllers\KasMasukController::class);
 Route::resource('kaskeluar', \App\Http\Controllers\KasKeluarController::class);
+Route::get('/jurnal', [App\Http\Controllers\JurnalController::class, 'index'])->name('jurnal.index');
+Route::delete('/jurnal/{id}', [App\Http\Controllers\JurnalController::class, 'destroy'])->name('jurnal.destroy');

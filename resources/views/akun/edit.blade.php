@@ -36,6 +36,10 @@
                     <label for="kode_akun">Kode Akun:</label>
                     <input type="text" class="form-control" id="kode_akun" name="kode_akun" value="{{ $akun->kode_akun }}" required>
                 </div>
+                <div class="form-group">
+                    <label for="kode_akun">Total Jumlah:</label>
+                    <input type="text" class="form-control" id="total" name="total" value="{{ $akun->total }}" required>
+                </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>

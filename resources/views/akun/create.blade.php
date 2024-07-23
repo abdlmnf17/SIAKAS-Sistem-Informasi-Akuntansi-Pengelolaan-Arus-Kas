@@ -35,6 +35,10 @@
                     <label for="kode_akun">Kode Akun</label>
                     <input type="text" class="form-control" id="kode_akun" name="kode_akun" required>
                 </div>
+                <div class="form-group">
+                    <label for="total">Jumlah Total</label>
+                    <input type="number" class="form-control" id="total" name="total" required>
+                </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>

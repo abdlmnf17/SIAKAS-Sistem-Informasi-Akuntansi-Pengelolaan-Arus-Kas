@@ -67,7 +67,7 @@ class AkunController extends Controller
         $request->validate([
             'nama_akun' => 'required',
             'jenis_akun' => 'required',
-            'kode_akun' => 'required|unique:akun',
+            'kode_akun' => 'required',
         ]);
 
         $akun->update($request->all());
