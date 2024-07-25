@@ -30,6 +30,11 @@
 
 <body id="page-top">
 
+    @php
+        $role = auth()->user()->role;
+    @endphp
+
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -40,7 +45,8 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
 
                 <div class="sidebar-brand-icon">
-                    <img src="https://www.svgrepo.com/show/493351/accounting-man-upper-body.svg" alt="Logo" style="width: 50px">
+                    <img src="https://www.svgrepo.com/show/493351/accounting-man-upper-body.svg" alt="Logo"
+                        style="width: 50px">
 
                 </div><br />
 
@@ -60,38 +66,37 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            @if ($role === 'bendahara')
             <!-- Heading -->
             <div class="sidebar-heading">
                 MENU
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-database"></i>
-                    <span>Data Master</span>
 
-                </a>
-                @php
-                    $role = auth()->user()->role;
-                @endphp
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-database"></i>
+                        <span>Data Master</span>
 
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Data Master</h6>
-                        @if ($role === 'bendahara')
+                    </a>
+
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Data Master</h6>
+
                             <a class="collapse-item" href="/user">Data Pengguna</a>
                             <a class="collapse-item" href="/akun">Data Akun</a>
-                        @endif
 
 
 
 
+                        </div>
                     </div>
-                </div>
-            </li>
-            {{-- <li class="nav-item">
+                </li>
+                {{-- <li class="nav-item">
                 @if ($role === 'admin')
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetri"
                     aria-expanded="true" aria-controls="collapsetri">
@@ -117,32 +122,34 @@
                 </div>
             </li> --}}
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                    <span>Data Transaksi</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Data Transaksi</h6>
-                        @if ($role === 'bendahara')
-                        <a class="collapse-item" href="/kasmasuk">Kas Masuk</a>
-                        <a class="collapse-item" href="/kaskeluar">Kas Keluar</a>
-                        @endif
+                <!-- Nav Item - Utilities Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Data Transaksi</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Data Transaksi</h6>
 
+                            <a class="collapse-item" href="/kasmasuk">Kas Masuk</a>
+                            <a class="collapse-item" href="/kaskeluar">Kas Keluar</a>
+
+
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            @endif
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Laporan
+                Laporan Akuntansi
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -171,6 +178,16 @@
                 <a class="nav-link" href="/jurnal">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Entri Jurnal</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/bukubesar">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Buku Besar</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/neraca">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Neraca Saldo</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/laporan">
@@ -386,7 +403,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-success">
 
-                                    {{ Auth::user()->nama }}  ( {{ Auth::user()->role }} )</span>
+                                    {{ Auth::user()->nama }} ( {{ Auth::user()->role }} )</span>
                                 <i class="fas fa-user-tie"></i>
                             </a>
                             <!-- Dropdown - User Information -->

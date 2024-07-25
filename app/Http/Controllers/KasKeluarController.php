@@ -7,6 +7,8 @@ use App\Models\KasKeluar;
 use Illuminate\Cache\LuaScripts;
 use App\Models\Jurnal;
 use App\Models\Akun;
+use App\Models\BukuBesar;
+use App\Models\Neraca;
 
 class KasKeluarController extends Controller
 {
@@ -115,6 +117,39 @@ class KasKeluarController extends Controller
                 $akun->save();
             }
         }
+
+
+        BukuBesar::create([
+            'akunbukubesar' => $request->kredit,
+            'totaldebit' => 0,
+            'totalkredit' => $request->jumlah,
+            'keterangan' => $request->keterangan,
+            'ref' => $request->no_kaskeluar,
+        ]);
+
+        BukuBesar::create([
+            'akunbukubesar' => $request->debit,
+            'totaldebit' => $request->jumlah,
+            'totalkredit' => 0,
+            'keterangan' => $request->keterangan,
+            'ref' => $request->no_kaskeluar,
+        ]);
+
+        Neraca::create([
+            'akunneraca' => $request->kredit,
+            'totaldebit' => 0,
+            'totalkredit' => $request->jumlah,
+            'keterangan' => $request->keterangan,
+            'ref' => $request->no_kaskeluar,
+        ]);
+
+        Neraca::create([
+            'akunneraca' => $request->debit,
+            'totaldebit' => $request->jumlah,
+            'totalkredit' => 0,
+            'keterangan' => $request->keterangan,
+            'ref' => $request->no_kaskeluar,
+        ]);
 
 
         return \redirect()->route('kaskeluar.index')->with('success', 'Berhasil ditambahkan');

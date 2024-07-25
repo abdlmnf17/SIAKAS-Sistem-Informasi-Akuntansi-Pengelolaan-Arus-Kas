@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\KasMasuk;
 use App\Models\Jurnal;
 use App\Models\Akun;
+use App\Models\BukuBesar;
+use App\Models\Neraca;
 
 class KasMasukController extends Controller
 {
@@ -113,7 +115,41 @@ class KasMasukController extends Controller
                 }
                 $akun->save();
             }
+
+
         }
+
+        BukuBesar::create([
+            'akunbukubesar' => $request->kredit,
+            'totaldebit' => 0,
+            'totalkredit' => $request->jumlah,
+            'keterangan' => $request->keterangan,
+            'ref' => $request->no_kasmasuk,
+        ]);
+
+        BukuBesar::create([
+            'akunbukubesar' => $request->debit,
+            'totaldebit' => $request->jumlah,
+            'totalkredit' => 0,
+            'keterangan' => $request->keterangan,
+            'ref' => $request->no_kasmasuk,
+        ]);
+
+        Neraca::create([
+            'akunneraca' => $request->kredit,
+            'totaldebit' => 0,
+            'totalkredit' => $request->jumlah,
+            'keterangan' => $request->keterangan,
+            'ref' => $request->no_kasmasuk,
+        ]);
+
+        Neraca::create([
+            'akunneraca' => $request->debit,
+            'totaldebit' => $request->jumlah,
+            'totalkredit' => 0,
+            'keterangan' => $request->keterangan,
+            'ref' => $request->no_kasmasuk,
+        ]);
 
 
 
