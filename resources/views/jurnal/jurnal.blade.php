@@ -34,7 +34,7 @@
                 {{-- <a href="{{ route('jurnal.create') }}" class="btn btn-primary float-right">
                     <i class="fas fa-plus-circle"></i> Tambah
                 </a> --}}
-                <h4 class="m-15 font-weight-bold text-center">{{ __('Daftar Entri Jurnal') }}<br/>Jurnal Umum<br/>{{ config('app.company', 'SIAKAS') }}<br/>Semua Priode</h4>
+                <h4 class="m-15 font-weight-bold text-center">{{ __('Daftar Entri Jurnal') }}<br/>Jurnal Umum<br/>{{ config('app.company', 'SIAKAS') }}<br/>{{ config('app.priode', 'Laravel') }}</h4>
             </div>
             <div class="card-body">
                 <table id="dataTable" class="table table-bordered" cellspacing="1"><br />

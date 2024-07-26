@@ -19,26 +19,57 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('user', App\Http\Controllers\UserController::class);
-Route::resource('akun', App\Http\Controllers\AkunController::class);
-Route::resource('kasmasuk', \App\Http\Controllers\KasMasukController::class);
-Route::resource('kaskeluar', \App\Http\Controllers\KasKeluarController::class);
-Route::get('/jurnal', [App\Http\Controllers\JurnalController::class, 'index'])->name('jurnal.index');
-Route::get('/bukubesar', [App\Http\Controllers\BukuBesarController::class, 'index'])->name('bukubesar.index');
+Route::middleware(['auth'])->group(function () {
 
-Route::delete('/bukubesar/{id}', [App\Http\Controllers\BukuBesarController::class, 'destroy'])->name('bukubesar.destroy');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/neraca', [App\Http\Controllers\NeracaController::class, 'index'])->name('neraca.index');
+    Route::get('/jurnal', [App\Http\Controllers\JurnalController::class, 'index'])->name('jurnal.index');
+    Route::get('/bukubesar', [App\Http\Controllers\BukuBesarController::class, 'index'])->name('bukubesar.index');
 
-Route::delete('/neraca/{id}', [App\Http\Controllers\NeracaController::class, 'destroy'])->name('neraca.destroy');
+    Route::delete('/bukubesar/{id}', [App\Http\Controllers\BukuBesarController::class, 'destroy'])->name('bukubesar.destroy');
 
+    Route::get('/neraca', [App\Http\Controllers\NeracaController::class, 'index'])->name('neraca.index');
 
-Route::delete('/jurnal/{id}', [App\Http\Controllers\JurnalController::class, 'destroy'])->name('jurnal.destroy');
-Route::get('/labarugi', [App\Http\Controllers\LabaRugiController::class, 'index'])->name('labarugi.index');
+    Route::delete('/neraca/{id}', [App\Http\Controllers\NeracaController::class, 'destroy'])->name('neraca.destroy');
 
 
-Route::post('/bukubesar/reset', [App\Http\Controllers\BukuBesarController::class, 'reset'])->name('bukubesar.reset');
+    Route::delete('/jurnal/{id}', [App\Http\Controllers\JurnalController::class, 'destroy'])->name('jurnal.destroy');
+    Route::get('/labarugi', [App\Http\Controllers\LabaRugiController::class, 'index'])->name('labarugi.index');
 
-Route::post('/jurnal/reset', [App\Http\Controllers\JurnalController::class, 'reset'])->name('jurnal.reset');
-Route::post('/neraca/reset', [App\Http\Controllers\NeracaController::class, 'reset'])->name('neraca.reset');
+
+    Route::post('/bukubesar/reset', [App\Http\Controllers\BukuBesarController::class, 'reset'])->name('bukubesar.reset');
+
+    Route::post('/jurnal/reset', [App\Http\Controllers\JurnalController::class, 'reset'])->name('jurnal.reset');
+    Route::post('/neraca/reset', [App\Http\Controllers\NeracaController::class, 'reset'])->name('neraca.reset');
+
+});
+
+
+
+Route::middleware(['auth', 'ketua'])->group(function () {
+
+  
+    Route::resource('user', App\Http\Controllers\UserController::class);
+    Route::resource('akun', App\Http\Controllers\AkunController::class);
+    Route::resource('kasmasuk', \App\Http\Controllers\KasMasukController::class);
+    Route::resource('kaskeluar', \App\Http\Controllers\KasKeluarController::class);
+    Route::get('/jurnal', [App\Http\Controllers\JurnalController::class, 'index'])->name('jurnal.index');
+    Route::get('/bukubesar', [App\Http\Controllers\BukuBesarController::class, 'index'])->name('bukubesar.index');
+
+    Route::delete('/bukubesar/{id}', [App\Http\Controllers\BukuBesarController::class, 'destroy'])->name('bukubesar.destroy');
+
+    Route::get('/neraca', [App\Http\Controllers\NeracaController::class, 'index'])->name('neraca.index');
+
+    Route::delete('/neraca/{id}', [App\Http\Controllers\NeracaController::class, 'destroy'])->name('neraca.destroy');
+
+
+    Route::delete('/jurnal/{id}', [App\Http\Controllers\JurnalController::class, 'destroy'])->name('jurnal.destroy');
+    Route::get('/labarugi', [App\Http\Controllers\LabaRugiController::class, 'index'])->name('labarugi.index');
+
+
+    Route::post('/bukubesar/reset', [App\Http\Controllers\BukuBesarController::class, 'reset'])->name('bukubesar.reset');
+
+    Route::post('/jurnal/reset', [App\Http\Controllers\JurnalController::class, 'reset'])->name('jurnal.reset');
+    Route::post('/neraca/reset', [App\Http\Controllers\NeracaController::class, 'reset'])->name('neraca.reset');
+
+});

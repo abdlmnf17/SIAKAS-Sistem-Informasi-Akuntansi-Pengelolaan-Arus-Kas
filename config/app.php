@@ -17,6 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'priode' => env('PRIODE', 'Laravel'),
     'company' => env('NAMA_PERUSAHAAN', 'abdulmanap.com'),
 
     /*

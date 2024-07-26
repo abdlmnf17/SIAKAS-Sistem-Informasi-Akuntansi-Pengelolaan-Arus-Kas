@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Akun;
+use App\Models\KasMasuk;
+use App\Models\KasKeluar;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $akunKas = Akun::where('jenis_akun', 'Asset')->sum('total');
+        $akunPen = Akun::where('jenis_akun', 'Pendapatan')->sum('total');
+        $akunPeng = Akun::where('jenis_akun', 'Beban')->sum('total');
+        $user = User::count();
+        $kasmasuk = KasMasuk::count();
+        $kaskeluar = KasKeluar::count();
+
+        return view('home', compact('akunKas', 'akunPen', 'akunPeng', 'user', 'kasmasuk', 'kaskeluar'));
     }
-}
+
+    }

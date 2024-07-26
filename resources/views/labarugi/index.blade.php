@@ -4,7 +4,7 @@
     <div class="col-lg-11 mb-11 mx-auto">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h4 class="m-15 font-weight-bold text-center">{{ __('Laporan Laba Rugi') }}<br/>{{ config('app.company', 'SIAKAS') }}<br/>Periode: {{ now()->format('F Y') }}</h4>
+                <h4 class="m-15 font-weight-bold text-center">{{ __('Laporan Laba Rugi') }}<br/>{{ config('app.company', 'SIAKAS') }}<br/>Periode: {{ config('app.priode', 'Laravel') }}</h4>
             </div>
             <div class="card-body">
                 <table class="table table-bordered">

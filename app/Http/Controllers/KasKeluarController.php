@@ -107,7 +107,7 @@ class KasKeluarController extends Controller
         if ($request->kredit) {
             $akun = Akun::where('nama_akun', $request->kredit)->first();
             if ($akun) {
-                if ($akun->nama_akun === 'Pendapatan') {
+                if ($akun->jenis_akun === 'Pendapatan') {
                     // Jika nama akun adalah Pendapatan, tambahkan total
                     $akun->total += $request->jumlah;
                 } else {
