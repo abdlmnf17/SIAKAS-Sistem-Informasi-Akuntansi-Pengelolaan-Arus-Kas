@@ -31,7 +31,7 @@
         <!-- Project Card Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h4 class="m-15 font-weight-bold text-center">{{ __('Neraca Saldo') }}<br/>{{ config('app.company', 'SIAKAS') }}<br/>{{ config('app.priode', 'Laravel') }}</h4>
+                <h4 class="m-15 font-weight-bold text-center">{{ __('Neraca Saldo') }}<br/>{{ config('app.company', 'SIAKAS') }}</h4>
             </div>
             <div class="card-body">
                 @php
