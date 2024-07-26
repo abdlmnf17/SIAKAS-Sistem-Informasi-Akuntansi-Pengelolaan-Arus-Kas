@@ -43,5 +43,16 @@ class NeracaController extends Controller
 
         return redirect()->route('neraca.index')->with('success', 'Neraca berhasil dihapus.');
     }
+
+
+public function reset()
+{
+    try {
+        DB::table('neraca')->truncate(); // Menghapus semua data di tabel bukubesar
+        return redirect()->back()->with('success', 'Seluruh isi Neraca Saldo berhasil dihapus.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+    }
+}
 }
 

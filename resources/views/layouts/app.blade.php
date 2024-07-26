@@ -190,9 +190,9 @@
                     <span>Neraca Saldo</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/laporan">
+                <a class="nav-link" href="/labarugi">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Laporan Kas</span></a>
+                    <span>Laporan Laba Rugi</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

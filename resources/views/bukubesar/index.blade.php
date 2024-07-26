@@ -107,5 +107,36 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Tombol Hapus Seluruh Isi Buku Besar -->
+<div class="text-right mb-3">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmResetModal">
+        <i class="fas fa-trash"></i> Reset Seluruh Isi Buku Besar
+    </button>
+</div>
+<!-- Modal Konfirmasi Reset -->
+<div class="modal fade" id="confirmResetModal" tabindex="-1" role="dialog" aria-labelledby="confirmResetModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action="{{ route('bukubesar.reset') }}">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmResetModalLabel">Konfirmasi Reset Periode</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus seluruh isi buku besar? Data yang dihapus tidak dapat dikembalikan. Pastikan hasil buku besar priode sudah dibackup/download</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus Semua</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
     </div>
 @endsection

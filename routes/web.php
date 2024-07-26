@@ -35,3 +35,10 @@ Route::delete('/neraca/{id}', [App\Http\Controllers\NeracaController::class, 'de
 
 
 Route::delete('/jurnal/{id}', [App\Http\Controllers\JurnalController::class, 'destroy'])->name('jurnal.destroy');
+Route::get('/labarugi', [App\Http\Controllers\LabaRugiController::class, 'index'])->name('labarugi.index');
+
+
+Route::post('/bukubesar/reset', [App\Http\Controllers\BukuBesarController::class, 'reset'])->name('bukubesar.reset');
+
+Route::post('/jurnal/reset', [App\Http\Controllers\JurnalController::class, 'reset'])->name('jurnal.reset');
+Route::post('/neraca/reset', [App\Http\Controllers\NeracaController::class, 'reset'])->name('neraca.reset');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Akun;
+use DB;
 use App\Models\Jurnal;
 
 class JurnalController extends Controller
@@ -23,4 +24,18 @@ class JurnalController extends Controller
         $jurnal->delete();
         return \redirect()->route('jurnal.index')->with('success', 'Jurnal berhasil dihapus');
     }
+
+
+public function reset()
+{
+    try {
+        DB::table('jurnal')->truncate(); // Menghapus semua data di tabel bukubesar
+        return redirect()->back()->with('success', 'Seluruh isi jurnal berhasil dihapus.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+    }
+}
+
+
+
 }

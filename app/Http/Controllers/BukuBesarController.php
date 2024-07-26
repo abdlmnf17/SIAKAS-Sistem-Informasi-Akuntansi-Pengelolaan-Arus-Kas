@@ -24,4 +24,15 @@ public function destroy($id)
 
     return redirect()->route('bukubesar.index')->with('success', 'Data berhasil dihapus.');
 }
+
+public function reset()
+{
+    try {
+        DB::table('buku_besar')->truncate(); // Menghapus semua data di tabel bukubesar
+        return redirect()->back()->with('success', 'Seluruh isi buku besar berhasil dihapus.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+    }
+}
+
 }
