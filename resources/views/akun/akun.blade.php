@@ -29,9 +29,10 @@ $role = auth()->user()->role;
                 <thead>
                     <tr align="center">
                         <th style="width: 5%">#</th>
-                        <th style="width: 20%">Kode Akun</th>
-                        <th style="width: 30%">Nama Akun</th>
+                        <th style="width: 15%">Kode Akun</th>
+                        <th style="width: 15%">Nama Akun</th>
                         <th style="width: 20%">Jenis Akun</th>
+                        <th style="width: 20%">Saldo Akun</th>
                         <th style="width: 25%">Aksi</th>
 
                     </tr>
@@ -43,6 +44,7 @@ $role = auth()->user()->role;
                         <td>{{ $akunItem->kode_akun }}</td>
                         <td>{{ $akunItem->nama_akun }}</td>
                         <td>{{ $akunItem->jenis_akun }}</td>
+                        <td>{{ $akunItem->total }}</td>
 
                         <td>
 
@@ -55,7 +57,7 @@ $role = auth()->user()->role;
                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirmDeleteModal{{ $akunItem->id }}">
                                 <i class="fas fa-trash"></i> Hapus
                             </button>
-                        
+
                         </td>
                     </tr>
 

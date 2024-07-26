@@ -39,7 +39,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
@@ -50,7 +50,7 @@
 
                 </div><br />
 
-                <div class="sidebar-brand-text mx-3">SIA</div>
+                <div class="sidebar-brand-text mx-3"></div>
             </a>
 
             <!-- Divider -->
@@ -153,27 +153,48 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            {{-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Contoh Menu</span>
+                    <span>Laporan Keuangan</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
+                        <h6 class="collapse-header">SEMUA PRIODE:</h6>
+                        <a class="collapse-item" href="/jurnal">Jurnal Umum</a>
+                        <a class="collapse-item" href="/bukubesar">Buku Besar</a>
+                        <a class="collapse-item" href="/neraca">Neraca Saldo</a>
+                        <a class="collapse-item" href="/labarugi">Laba Rugi</a>
+                        {{-- <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Perprii:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a> --}}
                     </div>
                 </div>
-            </li> --}}
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
+                    aria-expanded="true" aria-controls="collapsePages3">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Cetak Laporan</span>
+                </a>
+                <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">PER PRIODE:</h6>
+                        <a class="collapse-item" href="/laporan">Semua Laporan</a>
+                        {{-- <a class="collapse-item" href="/bukubesar">Buku Besar</a>
+                        <a class="collapse-item" href="/neraca">Neraca Saldo</a>
+                        <a class="collapse-item" href="/labarugi">Laba Rugi</a> --}}
+                        {{-- <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Perprii:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a> --}}
+                    </div>
+                </div>
+            </li>
 
-            <!-- Nav Item - Charts -->
+            {{-- <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/jurnal">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -193,7 +214,7 @@
                 <a class="nav-link" href="/labarugi">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Laporan Laba Rugi</span></a>
-            </li>
+            </li> --}}
 
             <!-- Nav Item - Tables -->
             {{-- <li class="nav-item">
@@ -210,12 +231,12 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            {{-- <!-- Sidebar Message -->
+            <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div> --}}
+
+                <p class="text-center mb-2"><strong>Sistem Informasi Akuntansi</strong></p>
+                <a class="btn btn-success btn-sm" href="/home"> {{ config('app.company', 'Laravel') }}</a>
+            </div>
 
         </ul>
         <!-- End of Sidebar -->
@@ -247,7 +268,7 @@
                             </div>
                         </div>
                     </form> --}}
-                    <b>{{ config('app.name', 'Laravel') }}</b>
+                    <b>{{ config('app.name', 'Laravel') }}  -  {{ config('app.company', 'Laravel') }}</b>
 
 
                     <!-- Topbar Navbar -->
@@ -401,7 +422,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-success">
+                                <span class="mr-2 d-none d-lg-inline text-dark">
 
                                     {{ Auth::user()->nama }} ( {{ Auth::user()->role }} )</span>
                                 <i class="fas fa-user-tie"></i>

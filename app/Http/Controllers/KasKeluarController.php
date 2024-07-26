@@ -9,6 +9,7 @@ use App\Models\Jurnal;
 use App\Models\Akun;
 use App\Models\BukuBesar;
 use App\Models\Neraca;
+use Illuminate\Support\Facades\DB;
 
 class KasKeluarController extends Controller
 {
@@ -160,7 +161,9 @@ class KasKeluarController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $kasKeluar = KasKeluar::findOrFail($id);
+
+        return view('kaskeluar.show', compact('kasKeluar'));
     }
 
     /**
@@ -189,5 +192,16 @@ class KasKeluarController extends Controller
         $kaskeluar->delete();
 
         return \redirect()->route('kaskeluar.index')->with('success', 'Berhasil dihapus');
+    }
+
+
+    public function reset()
+    {
+        try {
+            DB::table('kaskeluar')->truncate(); // Menghapus semua data di tabel bukubesar
+            return redirect()->back()->with('success', 'Seluruh isi berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+        }
     }
 }
