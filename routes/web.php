@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/laporan-jurnal-pdf', [App\Http\Controllers\PDFController::class, 'generateJurnal'])->name('pdf.jurnal');
     Route::post('/laporan-bukubesar-pdf', [App\Http\Controllers\PDFController::class, 'generateBukuBesar'])->name('pdf.bukubesar');
     Route::post('/laporan-neraca-pdf', [App\Http\Controllers\PDFController::class, 'generateNeraca'])->name('pdf.neraca');
-    Route::post('/laporan-rugilaba-pdf', [App\Http\Controllers\PDFController::class, 'generate'])->name('pdf.rugilaba');
+    Route::post('/laporan-rugilaba-pdf', [App\Http\Controllers\PDFController::class, 'generateRugiLaba'])->name('pdf.rugilaba');
 });
 
 
